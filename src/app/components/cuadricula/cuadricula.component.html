@@ -1,0 +1,9 @@
+
+<div class="cuadricula-row" *ngFor="let row of cuadricula">
+    <div class="cuadricula-pixel"
+         [class.vivo]="pixel.isVivo()"
+         *ngFor="let pixel of row"
+         (click)="cambiarEstado(pixel)">
+    </div>
+  </div>
+  

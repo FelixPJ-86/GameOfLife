@@ -1,0 +1,7 @@
+<div class="contenedorCotroles">
+    <button [disabled]="isFuncionando" (click)="iniciar()">Inciar</button>
+    <button [disabled]="!isFuncionando" (click)="parar()">Parar</button>
+    <button (click)="reiniciar()">Reiniciar</button>
+  </div>
+  <p>Generation {{this.getContadorGeneraciones()}}</p>
+  

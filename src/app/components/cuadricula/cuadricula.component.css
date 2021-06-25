@@ -1,0 +1,24 @@
+.cuadricula-row {
+    display: flex;
+    margin-bottom: 1px;
+  }
+  
+  .cuadricula-row:last-child {
+    margin-bottom: 0;
+  }
+  
+  .cuadricula-pixel {
+    width: 10px;
+    height: 10px;
+    margin-right: 1px;
+    background-color: #eaeaea;
+  }
+  
+  .cuadricula-pixel:last-child {
+    margin-right: 0;
+  }
+  
+  .vivo {
+    background-color: #2da16e;
+  }
+  
