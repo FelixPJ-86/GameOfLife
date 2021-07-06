@@ -1,9 +1,9 @@
-.cuadricula-row {
+.cuadricula-fila {
     display: flex;
     margin-bottom: 1px;
   }
   
-  .cuadricula-row:last-child {
+  .cuadricula-fila:last-child {
     margin-bottom: 0;
   }
   

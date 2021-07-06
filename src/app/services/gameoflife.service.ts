@@ -11,6 +11,7 @@ export class GameoflifeService {
   private columnas: number = 0;
   private _contadorGeneraciones=0; 
   private _densidadPoblacion=0.15; 
+  private _filas=0;
 
   get contadorGeneraciones():number{
     return this._contadorGeneraciones;
@@ -20,6 +21,10 @@ export class GameoflifeService {
       return this._densidadPoblacion;
     }
 
+    get getFilas():number{
+      this._filas=this.filas;
+      return this._filas;
+    }
 
     setDensidadPoblacion(densidad:number){
       this._densidadPoblacion=densidad;
@@ -44,7 +49,6 @@ export class GameoflifeService {
       length: filas * columnas
     }).map((_ , i , a) => 
     new Pixel(Math.floor(i / this.columnas), i % this.columnas));
-
   }
   
 

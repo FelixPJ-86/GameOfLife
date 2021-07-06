@@ -5,6 +5,13 @@
 
 
 <div class="container">
-    <app-cuadricula ></app-cuadricula>
+    <app-cuadricula *ngIf="mostrar"></app-cuadricula>
+    <div  *ngIf="!mostrar">
+<app-animacion-carga></app-animacion-carga>
+<h1>CARGANDO...</h1><br></div>
+    <br>
     <app-controles></app-controles>
+    <label >tamaño cuadrícula</label> 
+    <input type="number" [(ngModel)]="anchoMod"    [min]="minAncho" [max]="maxAncho">
+    <button (click)="actualizarTam()">Actualizar Tamaño</button>
 </div>

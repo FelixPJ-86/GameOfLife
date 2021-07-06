@@ -14,8 +14,11 @@ export class CuadriculaComponent implements OnInit {
   constructor(private golService : GameoflifeService) { }
 
   ngOnInit() {
-    this.cuadricula = this.golService.getCuadricula();
+   this.cuadricula= this.golService.getCuadricula();
+ 
   }
+
+  
 
   cambiarEstado(pixel: Pixel) {
     pixel.cambiarEstado();

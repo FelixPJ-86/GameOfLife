@@ -11,7 +11,7 @@ export class ControlesComponent implements OnInit {
 
   private intervalId!:number;
   private _isFuncionando!: boolean;
-  densidadPoblacion:number=0;
+  private densidadPoblacion:number=0;
 
 
   constructor(private golService:GameoflifeService) { }
@@ -24,6 +24,7 @@ export class ControlesComponent implements OnInit {
 
   ngOnInit(): void {
  this.densidadPoblacion=this.golService.densidadPoblacion;
+
   }
 
   iniciar(){
@@ -54,16 +55,28 @@ export class ControlesComponent implements OnInit {
     this.golService.reiniciar();  
   }
 
-  onChange(densidadPoblacion:number){
 
-  if(densidadPoblacion< 0 ){
-    this.densidadPoblacion = 0
-  }
-  else if(densidadPoblacion > 0.9){
-    this.densidadPoblacion = 0.9;
-  }
+public minDenPo:number=0;
+public maxDenPo:number=0.90;
 
+
+get densidadPoblacionMod() : number {
+  return this.densidadPoblacion;
+}
+
+set densidadPoblacionMod(newValue : number) {
+  this.densidadPoblacion = newValue;
+  if(this.densidadPoblacion < this.minDenPo){
+      this.densidadPoblacion = 0;
+      setTimeout(() => {this.densidadPoblacion = this.minDenPo;});
   }
+  else if(this.densidadPoblacion > this.maxDenPo){
+      this.densidadPoblacion = 0;
+      setTimeout(() => {this.densidadPoblacion = this.maxDenPo;});
+  }
+}
+
+
 
 
 }

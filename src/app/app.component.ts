@@ -8,15 +8,48 @@ import { GameoflifeService } from './services/gameoflife.service';
 })
 export class AppComponent implements OnInit {
 
-  rows = 50;
-  cols = 50;
-
+  private rows = 50;
+  private cols = 50;
+  private ancho:number=0;
+mostrar=true;
   constructor(private golService:GameoflifeService){  }
 
   ngOnInit(){
     this.golService.iniciar(this.rows, this.cols);
     this.golService.iniciarPixelsAleatoriamente();
+    this.ancho=this.golService.getFilas;
   }
+
+  
+
+public minAncho : number = 0;
+public maxAncho : number = 250;
+
+get anchoMod() : number {
+    return this.ancho;
+}
+
+set anchoMod(newValue : number) {
+    this.ancho = newValue;
+    if(this.ancho < this.minAncho){
+        this.ancho = 0;
+        setTimeout(() => {this.ancho = this.minAncho;});
+    }
+    else if(this.ancho > this.maxAncho){
+        this.ancho = 0;
+        setTimeout(() => {this.ancho = this.maxAncho;});
+    }
+}
+
+actualizarTam(){
+  this.mostrar=false;
+  this.golService.iniciar(this.ancho,this.ancho);
+  this.golService.iniciarPixelsAleatoriamente();
+  setTimeout(() => {
+    this.mostrar=true;
+  }, 2000);
+}
+
 
 
 }

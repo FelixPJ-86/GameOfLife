@@ -1,8 +1,8 @@
 
-<div class="cuadricula-row" *ngFor="let row of cuadricula">
+<div class="cuadricula-fila" *ngFor="let fila of cuadricula">
     <div class="cuadricula-pixel"
          [class.vivo]="pixel.isVivo()"
-         *ngFor="let pixel of row"
+         *ngFor="let pixel of fila"
          (click)="cambiarEstado(pixel)">
     </div>
   </div>
