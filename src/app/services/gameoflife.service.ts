@@ -7,34 +7,43 @@ import { Pixel } from '../interfaces/pixels';
 export class GameoflifeService {
 
   private pixels: Pixel[] = [];
-  private rows: number = 0;
-  private cols: number = 0;
+  private filas: number = 0;
+  private columnas: number = 0;
   private _contadorGeneraciones=0; 
+  private _densidadPoblacion=0.15; 
 
   get contadorGeneraciones():number{
     return this._contadorGeneraciones;
   }
 
+    get densidadPoblacion():number{
+      return this._densidadPoblacion;
+    }
+
+
+    setDensidadPoblacion(densidad:number){
+      this._densidadPoblacion=densidad;
+    }
 
     /**
    * Inicializa la cuadrícula con pixels muertos.   
    * Esta funcion se llamará en primer lugar.
-   * @param rows Número de filas. por defecto son 10.
-   * @param cols Número de columnas. por defecto son 10.
+   * @param filas Número de filas. por defecto son 10.
+   * @param columnas Número de columnas. por defecto son 10.
    */
-  iniciar(rows = 10 , cols = 10){
+  iniciar(filas = 10 , columnas = 10){
     const tamMinimo = 5;
-    if(rows < tamMinimo || cols < tamMinimo){
+    if(filas < tamMinimo || columnas < tamMinimo){
       throw Error(`La altura y anchura deben ser al menos ${tamMinimo}.`);
     }
 
-    this.rows = rows;
-    this.cols = cols;
+    this.filas = filas;
+    this.columnas = columnas;
     this._contadorGeneraciones = 0;
     this.pixels = Array.from({
-      length: rows * cols
+      length: filas * columnas
     }).map((_ , i , a) => 
-    new Pixel(Math.floor(i / this.cols), i % this.cols));
+    new Pixel(Math.floor(i / this.columnas), i % this.columnas));
 
   }
   
@@ -45,14 +54,14 @@ export class GameoflifeService {
    * "0.2" significa que el 20% de los pixels de la cuadrícula se activarán Esto debe ser un
    * valor positivo no mayor que 1. El valor predeterminado es 0,2.
    */
-  iniciarPixelsAleatoriamente(porcentajeVivo = 0.5){
+  iniciarPixelsAleatoriamente(){
     if(!this.pixels){
       throw Error('La cuadrícula aún no se ha inicializado.');
     }
 
     this.reiniciar();
     this.pixels.forEach(pixel => {
-      if(Math.random() < porcentajeVivo){
+      if(Math.random() < this._densidadPoblacion){
         pixel.cambiarEstado();
       }
     });
@@ -86,8 +95,8 @@ export class GameoflifeService {
     }
 
     const cuadricula=[];
-      for (let i = 0; i < this.rows; i++) {
-          cuadricula.push(this.pixels.slice(i * this.cols, (i+1) * this.cols));  
+      for (let i = 0; i < this.filas; i++) {
+          cuadricula.push(this.pixels.slice(i * this.columnas, (i+1) * this.columnas));  
       }
       return cuadricula;
   }
@@ -132,21 +141,21 @@ export class GameoflifeService {
 
 
   getVecinos(pixel:Pixel):Pixel[]{
-    if(this.isOutOfBounds(pixel.row, pixel.col)){
+    if(this.estaFueraLimite(pixel.fila, pixel.columna)){
       throw Error('las coordenadas están fuera del array.');
     }
 
-    const { row, col } = pixel;
+    const { fila, columna } = pixel;
     const coordenadasPosiblesVecinos = [
-      { row: row - 1, col: col },
-      { row: row - 1, col: col + 1 },
-      { row: row, col: col + 1 },
-      { row: row + 1, col: col + 1 },
-      { row: row + 1, col: col },
-      { row: row + 1, col: col - 1 },
-      { row: row, col: col - 1 },
-      { row: row - 1, col: col - 1}
-    ].filter(offset => !this.isOutOfBounds(offset.row, offset.col));
+      { fila: fila  - 1, columna: columna },
+      { fila: fila  - 1, columna: columna + 1 },
+      { fila: fila , columna: columna + 1 },
+      { fila: fila  + 1, columna: columna + 1 },
+      { fila: fila  + 1, columna: columna },
+      { fila: fila  + 1, columna: columna - 1 },
+      { fila: fila , columna: columna - 1 },
+      { fila: fila  - 1, columna: columna - 1}
+    ].filter(pixel => !this.estaFueraLimite(pixel.fila, pixel.columna));
 
     return coordenadasPosiblesVecinos.map(coordenada => this.getPixelEspecifico(coordenada));
 
@@ -154,24 +163,24 @@ export class GameoflifeService {
 
 
  
-  private getPixelEspecifico({row = 0, col = 0} = {}): Pixel {
-    if (this.isOutOfBounds(row, col)) {
-      throw Error(`las coordenadas están fuera del array. Límites: ${this.rows} rows, ${this.cols} cols. valor: ${{row, col}}`);
+  private getPixelEspecifico({fila = 0, columna = 0} = {}): Pixel {
+    if (this.estaFueraLimite(fila, columna)) {
+      throw Error(`las coordenadas están fuera del array. Límites: ${this.filas} rows, ${this.columnas} cols. valor: ${{fila, columna}}`);
     }
 
-    return this.pixels[row * this.cols + col];
+    return this.pixels[fila * this.columnas + columna];
   }
 
-  private isOutOfBounds(row: number, col: number): boolean {
-    return this.isRowOutOfBounds(row) || this.isColOutOfBounds(col);
+  private estaFueraLimite(fila: number, columna: number): boolean {
+    return this.filaFueraLimite(fila) || this.columnaFueraLimite(columna);
   }
 
-  private isRowOutOfBounds(row: number) {
-    return row < 0 || this.rows <= row;
+  private filaFueraLimite(fila: number) {
+    return fila < 0 || this.filas <= fila;
   }
 
-  private isColOutOfBounds(col: number) {
-    return col < 0 || this.cols <= col;
+  private columnaFueraLimite(columna: number) {
+    return columna < 0 || this.columnas <= columna;
   }
 
 }

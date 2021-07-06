@@ -8,8 +8,8 @@ import { GameoflifeService } from './services/gameoflife.service';
 })
 export class AppComponent implements OnInit {
 
-  rows = 100;
-  cols = 100;
+  rows = 50;
+  cols = 50;
 
   constructor(private golService:GameoflifeService){  }
 

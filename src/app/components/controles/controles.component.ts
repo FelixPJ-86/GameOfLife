@@ -11,6 +11,8 @@ export class ControlesComponent implements OnInit {
 
   private intervalId!:number;
   private _isFuncionando!: boolean;
+  densidadPoblacion:number=0;
+
 
   constructor(private golService:GameoflifeService) { }
 
@@ -21,7 +23,7 @@ export class ControlesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.iniciar();
+ this.densidadPoblacion=this.golService.densidadPoblacion;
   }
 
   iniciar(){
@@ -42,10 +44,26 @@ export class ControlesComponent implements OnInit {
 
   reiniciar(){
     this.parar();
+    this.golService.setDensidadPoblacion(this.densidadPoblacion);
     this.golService.reiniciar();  
     this.golService.iniciarPixelsAleatoriamente();
   }
 
+  reiniciar0(){
+    this.parar();
+    this.golService.reiniciar();  
+  }
+
+  onChange(densidadPoblacion:number){
+
+  if(densidadPoblacion< 0 ){
+    this.densidadPoblacion = 0
+  }
+  else if(densidadPoblacion > 0.9){
+    this.densidadPoblacion = 0.9;
+  }
+
+  }
 
 
 }

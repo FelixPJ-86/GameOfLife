@@ -7,23 +7,23 @@ export class Pixel {
     //propiedades para almacenar el estado 
     //despues de la actualización
     private estadoTemporal =false;
-    private _row: number;
-    private _col: number;
+    private _fila: number;
+    private _columna: number;
 
     // el estado muerto sera representado como 'false'
     // y el estado vivo como 'true'
-    constructor(row:number, col:number){
-        this._row=row;
-        this._col=col;
+    constructor(fila:number, columna:number){
+        this._fila=fila;
+        this._columna=columna;
 
     }
 
-    get row():number{
-        return this._row;
+    get fila():number{
+        return this._fila;
     }
 
-    get col():number{
-        return this._col;
+    get columna():number{
+        return this._columna;
     }
 
     setEstadoTemporal(estado:boolean){

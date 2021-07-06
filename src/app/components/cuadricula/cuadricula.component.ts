@@ -9,8 +9,6 @@ import { GameoflifeService } from '../../services/gameoflife.service';
   styleUrls: ['./cuadricula.component.css']
 })
 export class CuadriculaComponent implements OnInit {
-  @Input() rows!:number;
-  @Input() cols!:number;
   cuadricula!:Pixel[][];
 
   constructor(private golService : GameoflifeService) { }
