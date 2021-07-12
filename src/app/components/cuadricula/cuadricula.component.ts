@@ -24,4 +24,11 @@ export class CuadriculaComponent implements OnInit {
     pixel.cambiarEstado();
   }
 
+  onEvent(event:MouseEvent , pixel: Pixel){
+if(event.buttons===1){
+  pixel.cambiarEstado();
+}
+
+  }
+
 }

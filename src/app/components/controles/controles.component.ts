@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { GameoflifeService } from '../../services/gameoflife.service';
 
 @Component({
@@ -8,6 +8,8 @@ import { GameoflifeService } from '../../services/gameoflife.service';
   ]
 })
 export class ControlesComponent implements OnInit {
+
+ 
 
   private intervalId!:number;
   private _isFuncionando!: boolean;

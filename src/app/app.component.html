@@ -1,17 +1,26 @@
-<header>
-    <h1>Game of Life</h1>
-</header>
+<div class="contenido">
 
+<div class="controles">
+        <app-controles></app-controles>
+        <hr>
+        <h3>Tamaño de cuadrícula:</h3>
+        <p>     
+            <input type="number" 
+            [(ngModel)]="anchoMod"    
+            [min]="minAncho" 
+            [max]="maxAncho"> 
+            <button class="myButton" (click)="actualizarTam()">Actualizar</button>
+        </p>        
+</div>
 
-
-<div class="container">
+<div class="cuadricula">
     <app-cuadricula *ngIf="mostrar"></app-cuadricula>
+   
     <div  *ngIf="!mostrar">
 <app-animacion-carga></app-animacion-carga>
-<h1>CARGANDO...</h1><br></div>
-    <br>
-    <app-controles></app-controles>
-    <label >tamaño cuadrícula</label> 
-    <input type="number" [(ngModel)]="anchoMod"    [min]="minAncho" [max]="maxAncho">
-    <button (click)="actualizarTam()">Actualizar Tamaño</button>
+<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CARGANDO...</h1><br>
+</div>
+</div>
+
+
 </div>

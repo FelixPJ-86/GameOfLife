@@ -3,7 +3,9 @@
     <div class="cuadricula-pixel"
          [class.vivo]="pixel.isVivo()"
          *ngFor="let pixel of fila"
-         (click)="cambiarEstado(pixel)">
+         (click)="cambiarEstado(pixel)"
+         (mouseenter) = "onEvent($event , pixel)"
+         >
     </div>
   </div>
   

@@ -1,10 +1,21 @@
 <div class="contenedorControles">
-    <button [disabled]="isFuncionando" (click)="iniciar()">Inciar</button>
-    <button [disabled]="!isFuncionando" (click)="parar()">Parar</button>
-    <label >densidad de población</label><input type="number" [(ngModel)]="densidadPoblacionMod"  [min]="minDenPo" [max]="maxDenPo" step="0.05">
-    <button (click)="reiniciar()">Reiniciar Aleatorio</button>
-    <button (click)="reiniciar0()">Reiniciar a 0</button>
+  <ul>
+    <li> <button class="myButton" [disabled]="isFuncionando" (click)="iniciar()">Inciar</button>
+      <button  class="myButton" [disabled]="!isFuncionando" (click)="parar()">Parar</button>
+    <h4>Generación: {{this.getContadorGeneraciones()}}</h4>
+    <hr>
+    </li>
+    <li>
+    <p>  <label >densidad de población</label><input type="number" [(ngModel)]="densidadPoblacionMod"  [min]="minDenPo" [max]="maxDenPo" step="0.05">
+    </p>
+    </li>
+    <li>   
+      <button class="myButton" (click)="reiniciar()">Reinicio Aleatorio</button>
+      <button class="myButton" (click)="reiniciar0()">Reinicio a 0</button>
+    </li>
     
+  </ul>
+      
   </div>
-  <p>Generation {{this.getContadorGeneraciones()}}</p>
+
   

@@ -1,6 +1,6 @@
 .cuadricula-fila {
     display: flex;
-    margin-bottom: 1px;
+    /* margin-bottom: 1px; */
   }
   
   .cuadricula-fila:last-child {
@@ -8,10 +8,11 @@
   }
   
   .cuadricula-pixel {
-    width: 10px;
-    height: 10px;
-    margin-right: 1px;
+    width: 8px;
+    height: 8px;
+    /* margin-right: 1px; */
     background-color: #eaeaea;
+    flex-shrink:0;
   }
   
   .cuadricula-pixel:last-child {

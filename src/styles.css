@@ -1,4 +1,58 @@
 /* You can add global styles to this file, and also import other style files */
 body{
-    margin: 20px;
+margin: 0;
+background-color:  #f7a085 ;
+
 }
+
+
+.myButton {
+	box-shadow:inset 0px 1px 0px 0px #02a373;
+	background:linear-gradient(to bottom, #00996C 5%, #00996C 100%);
+	background-color:#01E8A4;
+	border-radius:6px;
+	border:1px solid #00412d;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #01E8A4;
+	margin-right: 10px;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #00a876 5%, #004e37 100%);
+	background-color:#01E8A4;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+input {
+	padding: 5px;
+	font-size: 16px;
+	border-width: 2px;
+	border-color: #01E8A4;
+	background-color: #ffffff;
+	color: #000000;
+	border-style: solid;
+	border-radius: 10px;
+	box-shadow: 0px 0px 5px rgba(66,66,66,.75);
+	text-shadow: 0px 0px 5px rgba(66,66,66,.75);
+	margin-left: 10px;
+	margin-right: 10px;
+}
+input:focus {
+	outline:none;
+}
+
+ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+  }

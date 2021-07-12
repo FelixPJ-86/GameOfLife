@@ -10,7 +10,7 @@ export class GameoflifeService {
   private filas: number = 0;
   private columnas: number = 0;
   private _contadorGeneraciones=0; 
-  private _densidadPoblacion=0.15; 
+  private _densidadPoblacion=0.25; 
   private _filas=0;
 
   get contadorGeneraciones():number{

@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ControlesComponent } from './components/controles/controles.component';
 import { CuadriculaComponent } from './components/cuadricula/cuadricula.component';
-import { NumMaxMin } from './pipes/numMaxMin.pipe';
 import { AnimacionCargaComponent } from './components/animacion-carga/animacion-carga.component';
 
 @NgModule({
@@ -14,7 +13,6 @@ import { AnimacionCargaComponent } from './components/animacion-carga/animacion-
     AppComponent,
     ControlesComponent,
     CuadriculaComponent,
-    NumMaxMin,
     AnimacionCargaComponent
   ],
   imports: [

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { GameoflifeService } from './services/gameoflife.service';
+import { ControlesComponent } from './components/controles/controles.component';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,8 @@ import { GameoflifeService } from './services/gameoflife.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
+  @ViewChild(ControlesComponent) appControles: ControlesComponent | undefined;
 
   private rows = 50;
   private cols = 50;
@@ -42,6 +45,7 @@ set anchoMod(newValue : number) {
 }
 
 actualizarTam(){
+  this.appControles?.parar();
   this.mostrar=false;
   this.golService.iniciar(this.ancho,this.ancho);
   this.golService.iniciarPixelsAleatoriamente();
